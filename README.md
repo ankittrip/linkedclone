@@ -129,7 +129,7 @@ POST	/api/posts/:id/like	Like/Unlike post
 POST	/api/posts/:id/comment	Add comment
 🖼️ Screenshots
 Login Page	Feed Page	Create Post
-<img width="1167" height="714" alt="image" src="https://github.com/user-attachments/assets/1863f8eb-87d4-49a5-acee-0b5fa0ed1ff7" />
+<img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/1863f8eb-87d4-49a5-acee-0b5fa0ed1ff7" />
 
 	
 	
