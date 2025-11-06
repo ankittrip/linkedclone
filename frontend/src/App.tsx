@@ -14,16 +14,9 @@ function App() {
   useEffect(() => {
     const socket = initSocket();
 
-    socket.on("connect", () => console.log("✅ Connected to Socket.IO:", socket.id));
-    socket.on("disconnect", () => console.log("❌ Disconnected from Socket.IO"));
-
-    // Optional global listeners
-    socket.on("postLiked", (data) => console.log("🔵 Post liked:", data));
-    socket.on("postCommented", (data) => console.log("🟢 New comment:", data));
+    socket.on("connect", () => console.log("Connected to Socket.IO:", socket.id));
 
     return () => {
-      socket.off("postLiked");
-      socket.off("postCommented");
       disconnectSocket();
     };
   }, []);
