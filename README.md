@@ -127,11 +127,15 @@ PUT	/api/posts/:id	Edit post
 DELETE	/api/posts/:id	Delete post
 POST	/api/posts/:id/like	Like/Unlike post
 POST	/api/posts/:id/comment	Add comment
+
+
+
 🖼️ Screenshots
 Login Page	Feed Page	Create Post
 <img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/1863f8eb-87d4-49a5-acee-0b5fa0ed1ff7" />
-
-	
+Feed Page
+Create Post
+profile page
 	
 
 (You can replace the above with real screenshots from your app for extra impact.)
