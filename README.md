@@ -133,9 +133,18 @@ POST	/api/posts/:id/comment	Add comment
 🖼️ Screenshots
 Login Page	Feed Page	Create Post
 <img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/1863f8eb-87d4-49a5-acee-0b5fa0ed1ff7" />
+
+
 Feed Page
+<img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/48b83594-ae49-4f4e-9f46-8c24f6118be3" />
+
 Create Post
+<img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/3ce41a0c-eff8-49f1-962b-e29da1945193" />
+
+
 profile page
+<img width="550" height="350" alt="image" src="https://github.com/user-attachments/assets/0a39414a-9730-44a6-856e-63938bfd88ca" />
+
 	
 
 (You can replace the above with real screenshots from your app for extra impact.)
