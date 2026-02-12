@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
 import { useAuth } from "../hooks/useAuth";
 import type { AxiosError } from "axios";
-import { Loader2 } from "lucide-react";
+import { Loader2, UserCheck } from "lucide-react"; 
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -13,6 +13,12 @@ const LoginPage = () => {
 
   const { setToken, setUser } = useAuth();
   const navigate = useNavigate();
+
+  
+  const handleGuestLogin = () => {
+    setEmail("riya@gmail.com"); 
+    setPassword("123456");       
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,6 +37,7 @@ const LoginPage = () => {
       navigate("/");
     } catch (error: unknown) {
       if (error && typeof error === "object" && "response" in error) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const axiosError = error as AxiosError<{ message: string }>;
         setErrorMessage(axiosError.response?.data?.message || "Invalid credentials");
       } else {
@@ -50,13 +57,11 @@ const LoginPage = () => {
           <p className="text-gray-500 mt-2">Welcome back! Please log in.</p>
         </div>
 
-
         {errorMessage && (
           <div className="mb-4 p-3 bg-red-100 text-red-700 text-sm rounded-lg border border-red-200">
             {errorMessage}
           </div>
         )}
-
 
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
@@ -85,13 +90,23 @@ const LoginPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex justify-center items-center gap-2 bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition disabled:opacity-60"
+            className="w-full flex justify-center items-center gap-2 bg-blue-600 text-white py-2.5 rounded-lg hover:bg-blue-700 transition disabled:opacity-60 font-semibold"
           >
             {loading && <Loader2 size={18} className="animate-spin" />}
             {loading ? "Logging in..." : "Login"}
           </button>
-        </form>
 
+          
+          <button
+            type="button"
+            onClick={handleGuestLogin}
+            className="w-full flex justify-center items-center gap-2 bg-green-100 text-green-700 py-2.5 rounded-lg hover:bg-green-200 transition font-semibold border border-green-200"
+          >
+            <UserCheck size={18} />
+            Get Guest Credentials
+          </button>
+
+        </form>
 
         <p className="text-center text-sm text-gray-600 mt-6">
           Don’t have an account?{" "}
