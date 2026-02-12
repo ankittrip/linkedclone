@@ -8,8 +8,8 @@ interface AuthContextType {
   setUser: (user: User | null) => void;
   token: string | null;
   setToken: (token: string | null) => void;
+  isLoading: boolean; 
 }
-
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
@@ -20,29 +20,34 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
+  
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    if (token) {
-      localStorage.setItem("token", token);
-      fetchUser();
-    } else {
-      localStorage.removeItem("token");
-      setUser(null);
-    }
+    const initAuth = async () => {
+      if (token) {
+        localStorage.setItem("token", token);
+        try {
+          const { data } = await api.get<User>("/users/me");
+          setUser(data);
+        } catch (error) {
+          console.error("Failed to fetch user:", error);
+          setUser(null);
+          localStorage.removeItem("token");
+          setToken(null);
+        }
+      } else {
+        localStorage.removeItem("token");
+        setUser(null);
+      }
+      setIsLoading(false);
+    };
+
+    initAuth();
   }, [token]);
 
-  const fetchUser = async () => {
-    try {
-      const { data } = await api.get<User>("/users/me");
-      setUser(data);
-    } catch (error) {
-      console.error("Failed to fetch user:", error);
-      setUser(null);
-    }
-  };
-
   return (
-    <AuthContext.Provider value={{ user, setUser, token, setToken }}>
+    <AuthContext.Provider value={{ user, setUser, token, setToken, isLoading }}>
       {children}
     </AuthContext.Provider>
   );
