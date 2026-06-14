@@ -34,6 +34,9 @@ app.get('/', (req, res) => {
   res.send('LinkedClone API is running:)');
 });
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
 
 app.use((req, res, next) => {
   res.status(404).json({
